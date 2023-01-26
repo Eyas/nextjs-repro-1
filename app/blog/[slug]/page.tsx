@@ -6,6 +6,7 @@ import remarkUnwrapImages from "remark-unwrap-images";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "@mapbox/rehype-prism";
+import { imageMetadata } from "@/lib/img";
 
 export default async function Page(props: { params: { slug: string } }) {
   const { content, frontmatter } = await compileMDX({
@@ -13,7 +14,7 @@ export default async function Page(props: { params: { slug: string } }) {
     options: {
       mdxOptions: {
         rehypePlugins: [
-          // imageMetadata,
+          imageMetadata,
           rehypeSlug as any,
           rehypePrism,
           // codeMeta,

@@ -16,6 +16,7 @@
     "@types/react-dom": "18.0.10",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
+    "image-size": "^1.0.2",
     "next": "13.1.5",
     "next-mdx-remote": "^4.3.0",
     "react": "18.2.0",
@@ -24,6 +25,10 @@
     "remark-custom-heading-id": "^1.0.0",
     "remark-gfm": "^3.0.1",
     "remark-unwrap-images": "^3.0.1",
+    "sharp": "^0.31.3",
     "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@types/sharp": "^0.31.1"
   }
 }
