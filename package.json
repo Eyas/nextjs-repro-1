@@ -15,7 +15,6 @@
     "@types/react-dom": "18.0.10",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
-    "image-size": "^1.0.2",
     "next": "13.1.5",
     "next-mdx-remote": "^4.3.0",
     "react": "18.2.0",
