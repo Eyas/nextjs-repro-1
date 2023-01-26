@@ -1,10 +1,8 @@
 // Similiar structure to:
 // https://github.com/JS-DevTools/rehype-inline-svg/blob/master/src/inline-svg.ts
+import { readFile } from "fs/promises";
 import imageSize from "image-size";
 import path from "path";
-import { promisify } from "util";
-
-const sizeOf = promisify(imageSize);
 
 interface Dim {
   width: number;
@@ -20,7 +18,8 @@ type ImageProps = Dim | RichDim;
  */
 export async function computeMetadata(src: string): Promise<ImageProps> {
   //   const imagePath = path.join(process.cwd(), "public", src);
-  const res = await sizeOf(src);
+  const imageBuffer = await readFile(src);
+  const res = imageSize(imageBuffer);
 
   if (!res) throw Error(`Invalid image with src "${src}"`);
   if (!res.width) throw new Error(`Must have width for ${src}`);
