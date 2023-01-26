@@ -60,6 +60,10 @@ async function addMetadata(node: ImageNode): Promise<void> {
  */
 export function imageMetadata(this: Processor) {
   return async function transformer(tree: Node, file: VFile): Promise<Node> {
+    if (true as any) {
+      return tree;
+    }
+
     const imgNodes: ImageNode[] = [];
 
     visit(tree, "element", (node) => {
