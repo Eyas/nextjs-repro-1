@@ -19,8 +19,8 @@ type ImageProps = Dim | RichDim;
  * Adds the image's `height` and `width` to it's properties.
  */
 export async function computeMetadata(src: string): Promise<ImageProps> {
-  const imagePath = path.join(process.cwd(), "public", src);
-  const res = await sizeOf(imagePath);
+  //   const imagePath = path.join(process.cwd(), "public", src);
+  const res = await sizeOf(src);
 
   if (!res) throw Error(`Invalid image with src "${src}"`);
   if (!res.width) throw new Error(`Must have width for ${src}`);
