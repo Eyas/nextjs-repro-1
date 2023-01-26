@@ -3,7 +3,7 @@
 import { Processor } from "unified";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
-// import { computeMetadata } from "./metadata";
+import { computeMetadata } from "./metadata";
 
 /**
  * An `<img>` HAST node
@@ -42,16 +42,16 @@ function filterImageNode(node: ImageNode): boolean {
 /**
  * Adds the image's `height` and `width` to it's properties.
  */
-// async function addMetadata(node: ImageNode): Promise<void> {
-//   const metadata = await computeMetadata(node.properties.src);
+async function addMetadata(node: ImageNode): Promise<void> {
+  const metadata = await computeMetadata(node.properties.src);
 
-//   node.properties.width = metadata.width;
-//   node.properties.height = metadata.height;
+  node.properties.width = metadata.width;
+  node.properties.height = metadata.height;
 
-//   if ("blurDataURL" in metadata) {
-//     node.properties.blurDataURL = metadata.blurDataURL;
-//   }
-// }
+  if ("blurDataURL" in metadata) {
+    node.properties.blurDataURL = metadata.blurDataURL;
+  }
+}
 
 /**
  * This is a Rehype plugin that finds image `<img>` elements and adds the height and width to the properties.
@@ -71,9 +71,9 @@ export function imageMetadata(this: Processor) {
       }
     });
 
-    // for (const node of imgNodes) {
-    //   await addMetadata(node);
-    // }
+    for (const node of imgNodes) {
+      await addMetadata(node);
+    }
 
     return tree;
   };

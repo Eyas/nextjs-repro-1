@@ -4,11 +4,11 @@ import imageSize from "image-size";
 import path from "path";
 import { promisify } from "util";
 import sharp from "sharp";
-import { readFile } from "fs/promises";
+// import { readFile } from "fs/promises";
 
 const sizeOf = promisify(imageSize);
-const BLUR_IMG_SIZE = 8;
-const BLUR_QUALITY = 70;
+// const BLUR_IMG_SIZE = 8;
+// const BLUR_QUALITY = 70;
 
 interface Dim {
   width: number;
@@ -32,28 +32,28 @@ export async function computeMetadata(src: string): Promise<ImageProps> {
 
   const result: ImageProps = { width: res.width, height: res.height };
 
-  const imageBlurExt = imagePath.match(/\.(png|webp|jpg|jpeg)$/);
-  if (imageBlurExt && res.width && res.height) {
-    // Compure Blur URL for these types of images.
-    // This code is based on next/build/webpack/loaders/next-image-loader.js
-    // Shrink the image's largest dimension
-    const dimension = res.width >= res.height ? "width" : "height";
-    const extension = imageBlurExt[1].replace("jpg", "jpeg");
+  //   const imageBlurExt = imagePath.match(/\.(png|webp|jpg|jpeg)$/);
+  //   if (imageBlurExt && res.width && res.height) {
+  //     // Compure Blur URL for these types of images.
+  //     // This code is based on next/build/webpack/loaders/next-image-loader.js
+  //     // Shrink the image's largest dimension
+  //     const dimension = res.width >= res.height ? "width" : "height";
+  //     const extension = imageBlurExt[1].replace("jpg", "jpeg");
 
-    const content = await readFile(imagePath);
+  //     const content = await readFile(imagePath);
 
-    const resizedImage = await resizeImage(
-      content,
-      dimension,
-      BLUR_IMG_SIZE,
-      extension,
-      BLUR_QUALITY
-    );
-    const blurDataURL = `data:image/${extension};base64,${resizedImage.toString(
-      "base64"
-    )}`;
-    (result as RichDim).blurDataURL = blurDataURL;
-  }
+  //     const resizedImage = await resizeImage(
+  //       content,
+  //       dimension,
+  //       BLUR_IMG_SIZE,
+  //       extension,
+  //       BLUR_QUALITY
+  //     );
+  //     const blurDataURL = `data:image/${extension};base64,${resizedImage.toString(
+  //       "base64"
+  //     )}`;
+  //     (result as RichDim).blurDataURL = blurDataURL;
+  //   }
 
   return result;
 }
