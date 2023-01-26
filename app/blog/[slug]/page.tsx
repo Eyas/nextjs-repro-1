@@ -11,7 +11,7 @@ export default async function Page(props: { params: { slug: string } }) {
   return (
     <>
       <p>Frontmatter: {JSON.stringify(frontmatter)}</p>
-      <article>{content}</article>
+      {/* <article>{content}</article> */}
     </>
   );
 }
